@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CRUD;
 use App\Http\Controllers\Controller;
 use App\Models\Melamar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PelamarController extends Controller
 {
@@ -48,7 +49,8 @@ class PelamarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $melamar = Melamar::findOrFail($id);
+        return view("dashboard.pelamar", compact('melamar'));
     }
 
     /**
@@ -56,7 +58,18 @@ class PelamarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $melamar = Melamar::findOrFail($id);
+        $melamar->update([
+            'status' => $request->status
+        ]);
+        return redirect("/admin/pelamar")->with('success', 'Success Update');
+    }
+
+
+    public function download($id){
+       $download = Melamar::where('id', $id)->firstOrFail();
+        $path = storage_path('pdf'. $download->berkas);
+        return Storage::download($path);
     }
 
     /**

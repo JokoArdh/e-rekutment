@@ -38,22 +38,16 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="/admin/slider" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Slider</p>
                 </a>
-              </li>
+              </li> --}}
               <li class="nav-item">
                 <a href="/admin/about" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data About</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/admin/team" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Team</p>
                 </a>
               </li>
               <li class="nav-item">

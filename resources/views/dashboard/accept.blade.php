@@ -14,7 +14,7 @@
                  <a href="/export" class="btn btn-primary mb-3">Cetak Pdf</a>
                 
                 <div class="table-responsive">
-                    <table id="myTable" class="table table-bordered table-hover table-striped">
+                    <table id="myTable" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>No</th>

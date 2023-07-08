@@ -17,6 +17,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/user/profile">My Profile</a></li>
+              <li><a class="dropdown-item" href="/user/notif">Notifikasi</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
                 <form action="/logout" method="post">

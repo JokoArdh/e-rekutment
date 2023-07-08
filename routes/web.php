@@ -54,6 +54,10 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::group(['middleware' => ['auth']], function(){
     Route::group(['middleware' => ['user-role:admin']], function(){
     Route::get('/admin', [AdminController::class, 'index']);
+    Route::get("download/{id}", [PelamarController::class, 'download']);
+
+
+
     Route::resource('/admin/slider', SliderController::class);
     Route::resource('/admin/about', TentangController::class);
     Route::resource('/admin/team', TeamController::class);
@@ -75,6 +79,14 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get("/user/ubahpass", [ChangepassController::class, 'index']);
         Route::post("/user/updatepass", [ChangepassController::class, 'updatepass']);
         Route::get("/user/ubahprofile", [ChangepassController::class, 'ubahprofile']);
+
+
+        Route::post("/user/updateprofil", [ChangepassController::class, 'aksiupdate']);
+
+
+        
+        Route::get("/user/notif", [UserController::class, 'notif']);
+        Route::get("/user/apply/{post:id}", [UserController::class, 'apply']);
         Route::get("/loker/{post:slug}", [UserController::class, 'detail']);
         Route::resource("/user", UserController::class);
     });

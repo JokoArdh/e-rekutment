@@ -25,7 +25,7 @@
   <link href="front/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="front/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="front/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+ 
   <!-- Template Main CSS File -->
   <link href="front/assets/css/main.css" rel="stylesheet">
 
@@ -65,7 +65,7 @@
 
   <!-- Template Main JS File -->
   <script src="front/assets/js/main.js"></script>
-
+  
 </body>
 
 </html>

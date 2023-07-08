@@ -4,6 +4,7 @@ namespace App\Http\Controllers\CRUD;
 
 use App\Http\Controllers\Controller;
 use App\Models\Melamar;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 

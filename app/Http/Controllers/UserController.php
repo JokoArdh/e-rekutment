@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Melamar;
 use App\Models\Post;
+use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -28,13 +32,26 @@ class UserController extends Controller
             "post" => $post
         ]);
     }
+    public function notif(){
+        $data = Melamar::where('user_id', Auth::id())->get();
+        return view("user.notif", [
+            "title" => "Notifikasi",
+            "data" => $data
+        ]);
+    }
+    public function apply(Post $post){
+        return view("user.apply", [
+            "title" => "Lamar",
+            "post" => $post
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -42,8 +59,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'berkas' => 'required|mimes:pdf,doc,docx',
+            'post_id' => 'required',
+        ]);
+        $validateData['user_id'] = auth()->user()->id;
+
+        $validateData['berkas'] = $request->file('berkas')->store('public/pdf');
+        $validateData['berkas'] = $request->file('berkas')->hashName();
+        // $path = Storage::putFile('pdf', $request->file('berkas'));
+        Melamar::create($validateData);
+
+        return back()->with('upload', 'Data berhasil diupload');
     }
+
 
     /**
      * Display the specified resource.

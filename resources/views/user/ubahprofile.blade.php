@@ -17,8 +17,9 @@
         <div class="col-lg-8">
           <div class="card mb-4">
             <div class="card-body">
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="/user/updateprofil" method="post" enctype="multipart/form-data">
               @csrf
+              @method('PUT')
                 <div class="row">
                     <div class="col-sm-3">
                      <label for="name" mb-0>Username</label>

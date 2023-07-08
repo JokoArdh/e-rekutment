@@ -37,5 +37,33 @@ class ChangepassController extends Controller
             'title' => 'Ubah Profile'
         ]);
     }
+
+    public function aksiupdate(Request $request){
+      $request->validate([
+        'name' => 'required',
+        'kota' => 'required',
+        'tgl' => 'required',
+        'alamat' => 'required',
+        'gender' => 'required',
+        'phone' => 'required',
+        'tamatan' => 'required',
+        'email' => 'required|email:dns',
+        'photo' => 'required',
+      ]);
+
+       User::whereId(auth()->user()->id)->update([
+        'name' => $request->name,
+        'kota' => $request->kota,
+        'tgl' => $request->tgl,
+        'alamat' => $request->alamat,
+        'gender' => $request->gender,
+        'phone' => $request->phone,
+        'tamatan' => $request->tamatan,
+        'email' => $request->email,
+        'photo' => $request->photo
+       ]);
+       $image = $request->file('photo')->store('image');
+       return back()->with('success', 'update data diri selesai');
+    }
     
 }
