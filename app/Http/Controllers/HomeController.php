@@ -50,10 +50,10 @@ class HomeController extends Controller
     }
     public function info()
     {
+        $post = Post::latest()->paginate(3);
         return view("frontend.blog", [
             "title" => "Loker",
-            "post" => Post::all(),
-        ]);
+        ], compact('post'));
     }
     public function kontak()
     {
@@ -64,7 +64,7 @@ class HomeController extends Controller
         
     }
 
-      public function detail(Post $post){
+    public function detail(Post $post){
         return view("single.detail", [
             "title" => "Single Post",
             "post" => $post

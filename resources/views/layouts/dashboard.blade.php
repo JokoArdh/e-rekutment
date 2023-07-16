@@ -113,5 +113,12 @@ $(document).ready(function () {
       
   @endif
 </script>
+<script>
+  function copyText(){
+    var misal2 = document.getElementById('form1').value;
+    var misal = misal2.replace(/\s+/g, '-');
+    document.getElementById('form2').value = misal;
+  }
+</script>
 </body>
 </html>

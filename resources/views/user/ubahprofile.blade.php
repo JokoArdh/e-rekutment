@@ -17,15 +17,14 @@
         <div class="col-lg-8">
           <div class="card mb-4">
             <div class="card-body">
-            <form action="/user/updateprofil" method="post" enctype="multipart/form-data">
+            <form action="{{ route('updateprofile') }}" method="post" enctype="multipart/form-data">
               @csrf
-              @method('PUT')
                 <div class="row">
                     <div class="col-sm-3">
                      <label for="name" mb-0>Username</label>
                     </div>
                     <div class="col-sm-9">
-                      <input type="text" name="name" class="form-control" value="{{ old('name', auth()->user()->name) }}">
+                      <input type="text" name="name" class="form-control" value="{{ $user->name}}">
                     </div>
                 </div>
                 <hr>
@@ -34,7 +33,7 @@
                   <label for="kota" class="mb-0">Kota</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" name="kota" class="form-control" value="{{ old('name', auth()->user()->kota) }}">
+                  <input type="text" name="kota" class="form-control" value="{{ $user->kota }}">
                 </div>
               </div>
               <hr>
@@ -43,7 +42,7 @@
                   <label for="tgl" class="mb-0">Tanggal Lahir</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="date" name="tgl" class="form-control" value="{{ old('date', auth()->user()->tgl) }}">
+                  <input type="date" name="tgl" class="form-control" value="{{ $user->tgl }}">
                 </div>
               </div>
               <hr>
@@ -52,7 +51,7 @@
                   <label for="alamat" class="mb-0">Alamat</label>
                 </div>
                 <div class="col-sm-9">
-                  <textarea name="alamat"  class="form-control" cols="2" rows="2">{{ old('alamat', auth()->user()->alamat) }}</textarea>
+                  <textarea name="alamat"  class="form-control" cols="2" rows="2">{{ $user->alamat }}</textarea>
                 </div>
               </div>
               <hr>
@@ -62,7 +61,7 @@
                 </div>
                 <div class="col-sm-9">
                   <select name="gender" class="form-select">
-                    <option value="">{{ old('gender', auth()->user()->gender) }}</option>
+                    <option value="{{ $user->gender }}">{{ $user->gender }}</option>
                     <option value="laki-laki">laki-laki</option>
                     <option value="perempuan">perempuan</option>
                   </select>
@@ -74,7 +73,7 @@
                   <label for="phone" class="mb-0">No Hp</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" name="phone" class="form-control" value="{{ old('phone', auth()->user()->phone) }}">
+                  <input type="text" name="phone" class="form-control" value="{{ $user->phone}}">
                 </div>
               </div>
               <hr>
@@ -84,7 +83,7 @@
                 </div>
                 <div class="col-sm-9">
                   <select name="tamatan" class="form-select">
-                    <option value="">Pendidikan terakhir</option>
+                    <option value="{{ $user->tamatan }}">{{ $user->tamatan }}</option>
                             <option value="smp">SMP</option>
                             <option value="smk">SMK/SMA</option>
                             <option value="diploma3">Dimploma/D3</option>

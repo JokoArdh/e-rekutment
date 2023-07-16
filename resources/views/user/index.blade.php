@@ -2,7 +2,7 @@
 
 @section('container')
 
-<div class="alert alert-secondary" role="alert">
+<div class="alert alert-info" role="alert">
   Selamat datang {{ auth()->user()->name }}
 </div>
 
@@ -27,5 +27,6 @@
   </div>     
  @endforeach
 </div>
+{{ $post->links() }}
     
 @endsection

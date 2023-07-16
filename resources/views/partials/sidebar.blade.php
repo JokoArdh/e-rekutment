@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <!-- Sidebar Menu -->
+      @can('isAdmin')
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
@@ -37,6 +37,7 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            
             <ul class="nav nav-treeview">
               {{-- <li class="nav-item">
                 <a href="/admin/slider" class="nav-link">
@@ -88,6 +89,52 @@
               <p>Data Diterima</p>
             </a>
           </li>
+          
+      @elsecan('isHrd')
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="/hrd" class="nav-link">
+              <i class="nav-icon fas fas-solid fa-folder"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+               Data Page
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="/hrd/loker" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Loker</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/hrd/pencaker" class="nav-link">
+              <i class="nav-icon fas fas-solid fa-folder"></i>
+              <p>Data Pelamar</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/hrd/terima" class="nav-link">
+              <i class="nav-icon fas fas-solid fa-folder"></i>
+              <p>Data Diterima</p>
+            </a>
+          </li>
+      @endcan
+      <!-- Sidebar Menu -->
+     
           <li class="nav-item">
             <form action="/logout" method="post">
               @csrf

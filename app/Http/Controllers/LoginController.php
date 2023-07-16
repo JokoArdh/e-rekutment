@@ -10,15 +10,15 @@ class LoginController extends Controller
     //
     public function index(){
 
-        if($user = Auth::user()){
-            if($user->role == 'admin'){
-                return redirect()->intended('admin');
-            }else if ($user->role == 'hrd'){
-                return redirect()->intended('hrd');
-            }else{
-                return redirect()->intended('user');
-            }
-        }
+        // if($user = Auth::user()){
+        //     if($user->role == 'admin'){
+        //         return redirect()->intended('admin');
+        //     }else if ($user->role == 'hrd'){
+        //         return redirect()->intended('hrd');
+        //     }else{
+        //         return redirect()->intended('user');
+        //     }
+        // }
 
         return view("login.index", [
             'title' => 'Login'

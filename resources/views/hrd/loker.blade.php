@@ -12,7 +12,7 @@
             </div>
             <div class="card-body">
                 
-              <a href="/admin/post/create" class="btn btn-primary mb-3">Tambah</a>
+              <a href="/hrd/loker/create" class="btn btn-primary mb-3">Tambah</a>
                 
                 <div class="table-responsive">
                     <table id="myTable" class="table table-bordered table-hover table-striped">
@@ -21,7 +21,7 @@
                                 <th>No</th>
                                 <th>posisi</th>
                                 <th>Judul</th>
-                                <th>slug</th>
+                                <th>Isi Singkat</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -33,9 +33,9 @@
                                 <td>{{ $item->bagian }}</td>
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->excerpt }}</td>
-                                <td class="text-center">
-                                  <a href="{{ route('post.edit', $item->id) }}" class="btn btn-primary">Update</a>
-                                  <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="/admin/post/{{ $item->id }}" method="post">
+                                <td colspan="3">
+                                  <a href="{{ route('loker.edit', $item->id) }}" class="btn btn-primary">Update</a>
+                                  <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="/hrd/loker/{{ $item->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>

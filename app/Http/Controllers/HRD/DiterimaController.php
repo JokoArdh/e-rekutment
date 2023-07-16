@@ -1,25 +1,33 @@
 <?php
 
-namespace App\Http\Controllers\CRUD;
+namespace App\Http\Controllers\HRD;
 
 use App\Http\Controllers\Controller;
 use App\Models\Melamar;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-class PelamarController extends Controller
+class DiterimaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $melamar = Melamar::with('post', 'user')->where('status' ,'pending')->get();
-        return view('dashboard.pelamar', [
-            "title" => "Data Pelamar"
-        ], compact('melamar'));
+        $terima = Melamar::with('post', 'user')->where('status', 'terima')->get();
+        return view('hrd.accept', [
+            "title" => "Data Diterima",
+        ], compact('terima'));
     }
 
+    public function generate(){
+        $terima = Melamar::with('post', 'user')->where('status', 'terima')->get();
+        $pdf = Pdf::loadView('pdf', [
+            "title" => "pdf",
+            "terima" => $terima
+        ]);
+        return $pdf->stream('laporan.pdf');
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -49,8 +57,7 @@ class PelamarController extends Controller
      */
     public function edit(string $id)
     {
-        $melamar = Melamar::findOrFail($id);
-        return view("dashboard.pelamar", compact('melamar'));
+        //
     }
 
     /**
@@ -58,18 +65,7 @@ class PelamarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $melamar = Melamar::findOrFail($id);
-        $melamar->update([
-            'status' => $request->status
-        ]);
-        return redirect("/admin/pelamar")->with('success', 'Success Update');
-    }
-
-
-    public function download($id){
-       $download = Melamar::where('id', $id)->firstOrFail();
-        $path = storage_path('pdf/'.$download->berkas);
-        return Storage::download($path);
+        //
     }
 
     /**

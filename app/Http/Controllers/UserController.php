@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $post = Post::all();
+        $post = Post::latest()->paginate(3);
         return view('user.index', [
             'title' => 'Dashboard'
         ], compact('post'));
@@ -65,7 +65,7 @@ class UserController extends Controller
         ]);
         $validateData['user_id'] = auth()->user()->id;
 
-        $validateData['berkas'] = $request->file('berkas')->store('public/pdf');
+        $validateData['berkas'] = $request->file('berkas')->store('pdf');
         $validateData['berkas'] = $request->file('berkas')->hashName();
         // $path = Storage::putFile('pdf', $request->file('berkas'));
         Melamar::create($validateData);

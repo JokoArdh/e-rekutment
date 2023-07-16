@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\CRUD;
+namespace App\Http\Controllers\HRD;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class LokerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class PostController extends Controller
     public function index()
     {
         $post = Post::all();
-       return view("dashboard.loker", [
+        return view("hrd.loker", [
         "title" => "Loker"
-       ], compact('post'));
+      ], compact('post'));
     }
 
     /**
@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("dashboard.addpost", [
+        return view("hrd.addpost", [
             "title" => "Add Post"
         ]);
     }
@@ -45,7 +45,7 @@ class PostController extends Controller
         $input = $request->all();
         Post::create($input);
 
-        return redirect("admin/post")->with('success', 'Data berhsil ditambahkan');
+        return redirect("hrd/loker")->with('success', 'Data berhsil ditambahkan');
     }
 
     /**
@@ -62,7 +62,7 @@ class PostController extends Controller
     public function edit(string $id)
     {
         $post = Post::findOrFail($id);
-        return  view('dashboard.editpost',[
+        return  view('hrd.editpost',[
             "title" => "Editing Post"
         ], compact('post'));
     }
@@ -80,7 +80,7 @@ class PostController extends Controller
             'deskripsi' => $request->deskripsi,
             'jamkerja' => $request->jamkerja
         ]);
-        return redirect("/admin/post")->with('success', 'Data berhasil diupdate');
+        return redirect("/hrd/loker")->with('success', 'Data berhasil diupdate');
     }
 
     /**
@@ -90,6 +90,6 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->delete();
-        return redirect("/admin/post")->with('success', 'Data telah dihapus');
+        return redirect("/hrd/loker")->with('success', 'Data telah dihapus');
     }
 }

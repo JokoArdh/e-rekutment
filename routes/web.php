@@ -12,6 +12,9 @@ use App\Http\Controllers\CRUD\TeamController;
 use App\Http\Controllers\CRUD\TentangController;
 use App\Http\Controllers\CRUD\TerimaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HRD\DiterimaController;
+use App\Http\Controllers\HRD\LokerController;
+use App\Http\Controllers\HRD\PencakerController;
 use App\Http\Controllers\HrdController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -54,11 +57,6 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::group(['middleware' => ['auth']], function(){
     Route::group(['middleware' => ['user-role:admin']], function(){
     Route::get('/admin', [AdminController::class, 'index']);
-    Route::get("download/{id}", [PelamarController::class, 'download']);
-
-
-
-    Route::resource('/admin/slider', SliderController::class);
     Route::resource('/admin/about', TentangController::class);
     Route::resource('/admin/team', TeamController::class);
     Route::resource('/admin/jenis', JenisController::class);
@@ -71,7 +69,11 @@ Route::group(['middleware' => ['auth']], function(){
     });
 
     Route::group(['middleware' => ['user-role:hrd']], function(){
-        Route::get("/hrd", [HrdController::class, 'index']);
+        Route::get('/hrd', [HrdController::class, 'index']);
+        Route::resource('/hrd/loker', LokerController::class);
+        Route::resource('/hrd/pencaker', PencakerController::class);
+        Route::get('/export', [DiterimaController::class, 'generate']);
+        Route::resource('/hrd/terima', DiterimaController::class);
     });
 
     Route::group(['middleware' => ['user-role:user']], function(){
@@ -79,44 +81,14 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get("/user/ubahpass", [ChangepassController::class, 'index']);
         Route::post("/user/updatepass", [ChangepassController::class, 'updatepass']);
         Route::get("/user/ubahprofile", [ChangepassController::class, 'ubahprofile']);
-
-
-        Route::post("/user/updateprofil", [ChangepassController::class, 'aksiupdate']);
-
-
-        
+        Route::post("/user/aksiupdate", [ChangepassController::class, 'aksiupdate'])->name('updateprofile');
         Route::get("/user/notif", [UserController::class, 'notif']);
         Route::get("/user/apply/{post:id}", [UserController::class, 'apply']);
         Route::get("/loker/{post:slug}", [UserController::class, 'detail']);
         Route::resource("/user", UserController::class);
     });
 });
-// //route admin
-// Route::middleware(['auth', 'user-role:admin'])->group(function(){
-//     Route::get('/admin', [AdminController::class, 'index']);
-    // Route::resource('/admin/slider', SliderController::class);
-    // Route::resource('/admin/about', TentangController::class);
-    // Route::resource('/admin/team', TeamController::class);
-    // Route::resource('/admin/jenis', JenisController::class);
-    // Route::resource('/admin/service', ServiceController::class);
-    // Route::resource('/admin/akun', AkunController::class);
-// });
 
-// //route hrd
-// Route::middleware(['auth', 'user-role:hrd'])->group(function(){
-//     Route::get("/hrd", [HrdController::class, 'index']);
-// });
-
-// //route user
-// Route::middleware(['auth', 'user-role:user'])->group(function(){
-//     // Route::get("/user",[UserController::class, 'index']);
-    // Route::get("/user/profile", [UserController::class, 'profile']);
-    // Route::get("/user/ubahpass", [ChangepassController::class, 'index']);
-    // Route::post("/user/updatepass", [ChangepassController::class, 'updatepass']);
-    // Route::get("/user/ubahprofile", [ChangepassController::class, 'ubahprofile']);
-    // Route::resource("/user", UserController::class);
-  
-// });
 
 
 

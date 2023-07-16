@@ -48,7 +48,7 @@
                                       </button>
                                     </div>
                                     <div class="modal-body">
-                                      <form action="/admin/pelamar/{{ $item->id }}" method="post">
+                                      <form action="/hrd/pencaker/{{ $item->id }}" method="post">
                                         @csrf
                                         @method('PUT')
                                         <div class="row mb-3">

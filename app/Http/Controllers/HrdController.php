@@ -11,7 +11,9 @@ class HrdController extends Controller
      */
     public function index()
     {
-        //
+        return view("hrd.index", [
+            "title" => "Dashboard"
+        ]);
     }
 
     /**

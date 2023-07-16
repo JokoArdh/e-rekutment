@@ -12,7 +12,7 @@
           <li><a href="/">Home</a></li>
           <li>Blog</li>
         </ol>
-
+        <b style="color: aliceblue">untuk melamar silahkan daftar akun kamudian login</b>
       </div>
     </div><!-- End Breadcrumbs -->
 
@@ -45,9 +45,6 @@
                 </p>
 
                 <hr>
-
-                <a href="/blog/{{ $item->slug }}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-
               </div>
 
             </div>
@@ -55,18 +52,9 @@
 
         @endforeach
         </div><!-- End blog posts list -->
-
-        <div class="blog-pagination">
-          <ul class="justify-content-center">
-            <li><a href="#">1</a></li>
-            <li class="active"><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-          </ul>
-        </div><!-- End blog pagination -->
-
       </div>
     </section><!-- End Blog Section -->
-
+    {{ $post->links() }}
   </main><!-- End #main -->
 
 @endsection

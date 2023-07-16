@@ -17,8 +17,21 @@
                     {{ $post->excerpt }}<br><br>
                     {!! $post->deskripsi !!}
                 </article>
-                      
-            <a href="/user/apply/{{ $post->id }}" class="btn btn-success">Apply Loker</a>
+             
+            @php
+                use Carbon\Carbon;
+            
+                $postCreatedAt = Carbon::parse($post->created_at);
+                $currentDate = Carbon::now();
+                $daysDifference = $currentDate->diffInDays($postCreatedAt);
+            @endphp
+            @if ($daysDifference > 10)
+            <div class="alert alert-dark" role="alert">
+                Lowongan Telah Tutup
+              </div>
+            @else
+                <a href="/user/apply/{{ $post->id }}" class="btn btn-success">Apply Loker</a> 
+            @endif
         </div>
     </div>
 </div>

@@ -31,7 +31,7 @@
                               <td>{{ $loop->iteration}}</td>
                               <td>{{ $item->name}}</td>
                             <td>{!! $item->deskripsi !!}</td>
-                            <td>
+                            <td colspan="2">
                               <a href="" class="btn btn-warning" data-toggle="modal" data-target="#example{{ $item->id }}">Update</a>
                               <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="/admin/jenis/{{ $item->id }}" method="post">
                                 @csrf
@@ -53,7 +53,7 @@
                                  <div class="modal-body">
                                    <form action="/admin/jenis/{{ $item->id }}" method="post">
                                      @csrf
-                                     @method('put')
+                                     @method('PUT')
                                  
                                      <div class="form group">
                                          <label for="name">Name</label>
@@ -61,7 +61,7 @@
                                      </div>
                                      <div class="form group">
                                          <label for="deskripsi">Deskripsi</label>
-                                         <textarea name="deskripsi" id="diskripsi" class="form-control" cols="2" rows="3">{{ $item->deskripsi }}</textarea>
+                                         <textarea name="deskripsi" id="diskripsi" class="form-control"  rows="3">{{ $item->deskripsi }}</textarea>
                                      </div>
                                      <div class="modal-footer">
                                          <button type="submit" class="btn btn-primary">Save changes</button>

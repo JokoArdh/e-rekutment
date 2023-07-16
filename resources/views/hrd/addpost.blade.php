@@ -12,11 +12,11 @@
             </div>
             <div class="card-body">
                 
-                <a href="/admin/post" class="btn btn-primary mb-3">Kembali</a>
+                <a href="/hrd/loker" class="btn btn-primary mb-3">Kembali</a>
                 
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
-                        <form action="{{ route('post.store') }}" method="post">
+                        <form action="{{ route('loker.store') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="judul">Judul</label>
@@ -27,7 +27,7 @@
                             @enderror
                             <div class="form-group">
                                 <label for="bagian">Posisi</label>
-                                <input type="text"  class="form-control @error('bagian') is-invalid @enderror" name="bagian" placeholder="posisi/jabatan">
+                                <input type="text" class="form-control @error('bagian') is-invalid @enderror" name="bagian" placeholder="posisi/jabatan">
                             </div>
                             @error('bagian')
                                 <small style="color:red">{{ $message }}</small>

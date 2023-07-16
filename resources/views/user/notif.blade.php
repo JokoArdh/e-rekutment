@@ -14,7 +14,7 @@
                <tr>
                  @forelse ($data as $item)
                  <td>{{ $loop->iteration }}</td>
-                 <td>{{ $item->post->bagian }}</td>
+                 <td>{{ $item->post ? $item->post->bagian : '' }}</td>
                  <td>{{ $item->status }}</td>
                  @empty
                      <div class="alert alert-warning">
